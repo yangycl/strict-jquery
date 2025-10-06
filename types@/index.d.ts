@@ -4,5 +4,5 @@ interface $$$Type {
     getstr:(ele:HTMLElement) => string,
     gethtmlstr:(ele:HTMLElement) => string,
     getclass:(classname:string) => IdMap,
-    append:(parent:HTMLElement,htmlstr:string) => void
+    append:(parent:HTMLElement,htmlstr:string) => HTMLElement
 };

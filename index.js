@@ -33,5 +33,6 @@ const $$$ = {
                 ? document.currentScript.insertAdjacentHTML("beforebegin", htmlstr)
                 : parent.insertAdjacentHTML("beforeend", htmlstr)
             : parent.insertAdjacentHTML("beforeend", htmlstr);
+        return parent;
     }
 };

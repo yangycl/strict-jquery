@@ -33,6 +33,7 @@ const $$$:$$$Type = {
             ?document.currentScript?.parentElement === document.body && document.currentScript
                 ?document.currentScript.insertAdjacentHTML("beforebegin",htmlstr)
                 :parent.insertAdjacentHTML("beforeend",htmlstr)
-            :parent.insertAdjacentHTML("beforeend",htmlstr);       
+            :parent.insertAdjacentHTML("beforeend",htmlstr);
+        return parent;       
     }
 }
