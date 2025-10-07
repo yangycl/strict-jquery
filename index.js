@@ -1,5 +1,5 @@
 "use strict";
-const $$$ = {
+const $$$Func = {
     getid: (id) => {
         let ele = document.getElementById(id);
         if (!ele) {
@@ -36,3 +36,26 @@ const $$$ = {
         return parent;
     }
 };
+class $$$class {
+    ele;
+    constructor(id) {
+        this.ele = $$$Func.getid(id);
+        if (!this.ele) {
+            throw new Error(`The class(ele) ${id} not found`);
+        }
+    }
+    append(htmlstr) {
+        $$$Func.append(this.ele, htmlstr);
+        return this;
+    }
+    gethtmlstr() {
+        return $$$Func.gethtmlstr(this.ele);
+    }
+    getstr() {
+        return $$$Func.getstr(this.ele);
+    }
+}
+;
+function $$$(id) {
+    return new $$$class(id);
+}

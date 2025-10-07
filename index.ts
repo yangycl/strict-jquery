@@ -1,4 +1,4 @@
-const $$$:$$$Type = {
+const $$$Func:$$$Type = {
     getid:(id) => {
         let ele = document.getElementById(id);
         if(!ele){
@@ -36,4 +36,27 @@ const $$$:$$$Type = {
             :parent.insertAdjacentHTML("beforeend",htmlstr);
         return parent;       
     }
+}
+class $$$class implements ictJQuery{
+    ele: HTMLElement;
+    constructor(id:string){
+        this.ele = $$$Func.getid(id);
+                
+        if(!this.ele){
+            throw new Error(`The class(ele) ${id} not found`);
+        }        
+    }
+    append(htmlstr: string): this {
+        $$$Func.append(this.ele, htmlstr);
+        return this;
+    }
+    gethtmlstr () : string{
+        return $$$Func.gethtmlstr(this.ele);
+    }
+    getstr () : string{
+        return $$$Func.getstr(this.ele);
+    }
+};
+function $$$ (id:string):ictJQuery{
+    return new $$$class(id);
 }
