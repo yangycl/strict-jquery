@@ -10,5 +10,7 @@ interface ictJQuery {
     ele:HTMLElement,
     append:(htmlstr:string) => this,
     gethtmlstr:() => string,
-    getstr:() => string
+    getstr:() => string,
+    setstr:(str:string) => this,
+    on:(event:string,fun:function) => this
 }

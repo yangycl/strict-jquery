@@ -54,6 +54,17 @@ class $$$class {
     getstr() {
         return $$$Func.getstr(this.ele);
     }
+    setstr(str) {
+        this.ele.innerText = str;
+        return this;
+    }
+    on(event, fun) {
+        if (event === "click") {
+            this.ele.addEventListener("click", fun);
+        }
+        return this;
+    }
+    ;
 }
 ;
 function $$$(id) {

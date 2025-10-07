@@ -56,6 +56,16 @@ class $$$class implements ictJQuery{
     getstr () : string{
         return $$$Func.getstr(this.ele);
     }
+    setstr(str: string) : this{
+        this.ele.innerText = str;
+        return this;
+    }
+    on (event: string, fun: (event: Event) => void) : this{
+        if(event === "click"){
+            this.ele.addEventListener("click",fun);
+        }
+        return this;
+    };
 };
 function $$$ (id:string):ictJQuery{
     return new $$$class(id);
