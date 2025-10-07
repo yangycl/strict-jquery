@@ -61,9 +61,9 @@ class $$$class implements ictJQuery{
         return this;
     }
     on (event: string, fun: (event: Event) => void) : this{
-        if(event === "click"){
-            this.ele.addEventListener("click",fun);
-        }
+        
+        this.ele.addEventListener(event,fun);
+        
         return this;
     };
 };

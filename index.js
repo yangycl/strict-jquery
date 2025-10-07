@@ -59,9 +59,7 @@ class $$$class {
         return this;
     }
     on(event, fun) {
-        if (event === "click") {
-            this.ele.addEventListener("click", fun);
-        }
+        this.ele.addEventListener(event, fun);
         return this;
     }
     ;
