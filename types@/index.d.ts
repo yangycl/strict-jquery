@@ -12,5 +12,7 @@ interface ictJQuery {
     gethtmlstr:() => string,
     getstr:() => string,
     setstr:(str:string) => this,
-    on:(event:string,fun:function) => this
+    on:(event:string,fun:(ev: Event) => void) => this
 }
+declare function $$$(id:string) : ictJQuery;
+
