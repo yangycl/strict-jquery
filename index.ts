@@ -35,6 +35,19 @@ const $$$Func:$$$Type = {
                 :parent.insertAdjacentHTML("beforeend",htmlstr)
             :parent.insertAdjacentHTML("beforeend",htmlstr);
         return parent;       
+    },
+    getval(ele) {
+        if(ele instanceof HTMLInputElement){
+            return ele.value;
+        }
+        throw new Error("此元素不是input");
+    },
+    setval(ele:HTMLInputElement,text:string) {
+        if(ele instanceof HTMLInputElement){
+            ele.value = text;
+            return;
+        }
+        throw new Error(`元素 ${ele} 不是input`);
     }
 }
 class $$$class implements ictJQuery{
@@ -65,7 +78,18 @@ class $$$class implements ictJQuery{
         this.ele.addEventListener(event,fun);
         
         return this;
-    };
+    }
+    val (text?:string) : string | this{
+        if(text === undefined){
+            return $$$Func.getval(this.ele);
+        }
+        if(this.ele instanceof HTMLInputElement){
+            $$$Func.setval(this.ele,text)
+            return this;
+        }else{
+            throw new Error(`此元素 ${this.ele} 不是input`);
+        }
+    }
 };
 function $$$ (id:string):ictJQuery{
     return new $$$class(id);
