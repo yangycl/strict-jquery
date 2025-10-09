@@ -1,0 +1,2 @@
+# 排除編譯後的 JS 檔案
+index.js linguist-generated=true
