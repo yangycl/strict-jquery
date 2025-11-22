@@ -47,6 +47,20 @@ const $$$Func = {
             return;
         }
         throw new Error(`元素 ${ele} 不是input`);
+    },
+    css(style, ele) {
+        let result;
+        if (!style) {
+            result = getComputedStyle(ele);
+        }
+        else {
+            let styleKeys = Object.keys(style);
+            for (let styleKey of styleKeys) {
+                ele.style.setProperty(styleKey, style[styleKey]);
+            }
+            result = "this";
+        }
+        return result;
     }
 };
 class $$$class {
@@ -87,6 +101,11 @@ class $$$class {
             throw new Error(`此元素 ${this.ele} 不是input`);
         }
     }
+    css(style) {
+        let result = $$$Func.css(style, this.ele);
+        return result == "this" ? this : result;
+    }
+    ;
 }
 ;
 function $$$(id) {

@@ -48,6 +48,20 @@ const $$$Func:$$$Type = {
             return;
         }
         throw new Error(`元素 ${ele} 不是input`);
+    },
+    css(style,ele){
+        let result:CSSStyleDeclaration |"this";
+        if(!style){
+            result =  getComputedStyle(ele);
+        }
+        else{
+            let styleKeys = Object.keys(style);
+            for(let styleKey of styleKeys){
+                ele.style.setProperty(styleKey, style[styleKey]);
+            }
+            result = "this"
+        }
+        return result;
     }
 }
 class $$$class implements ictJQuery{
@@ -90,6 +104,10 @@ class $$$class implements ictJQuery{
             throw new Error(`此元素 ${this.ele} 不是input`);
         }
     }
+    css (style?: Record<string, string>){
+        let result = $$$Func.css(style,this.ele);
+        return result == "this"? this :result;
+    };
 };
 function $$$ (id:string):ictJQuery{
     return new $$$class(id);
