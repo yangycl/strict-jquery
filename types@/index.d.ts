@@ -7,8 +7,8 @@ interface $$$Type {
     append:(parent:HTMLElement,htmlstr:string) => HTMLElement
     getval:(ele:HTMLElement) => string,
     setval:(ele:HTMLInputElement,text:string) => void|never,
-    css:(style?:Record<string,string>,ele:HTMLElement) => CSSStyleDeclaration|"this"
-};
+    css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this"
+}
 interface ictJQuery {
     ele:HTMLElement,
     append:(htmlstr:string) => this,

@@ -1,44 +1,40 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// 全域函式
 const $$$Func = {
     getid: (id) => {
-        let ele = document.getElementById(id);
-        if (!ele) {
+        const ele = document.getElementById(id);
+        if (!ele)
             throw new Error(`Not found element ${id}`);
-        }
         return ele;
     },
-    getstr(ele) {
-        return ele.innerText;
-    },
-    gethtmlstr(ele) {
-        return ele.innerHTML;
-    },
-    getclass(classname) {
+    getstr: (ele) => ele.innerText,
+    gethtmlstr: (ele) => ele.innerHTML,
+    getclass: (classname) => {
         const nodeList = document.getElementsByClassName(classname);
         const arr = Array.from(nodeList).filter((el) => el instanceof HTMLElement);
         const result = {};
-        for (let ele of arr) {
-            if (ele instanceof HTMLElement) {
-                result[ele.id] = ele;
-            }
-            else {
-                console.warn(`The ele ${ele} not is a HTMLElement`);
-            }
-        }
+        for (let ele of arr)
+            result[ele.id] = ele;
         return result;
     },
     append(parent, htmlstr) {
-        parent === document.body
-            ? document.currentScript?.parentElement === document.body && document.currentScript
-                ? document.currentScript.insertAdjacentHTML("beforebegin", htmlstr)
-                : parent.insertAdjacentHTML("beforeend", htmlstr)
-            : parent.insertAdjacentHTML("beforeend", htmlstr);
+        if (parent === document.body) {
+            if (document.currentScript?.parentElement === document.body && document.currentScript) {
+                document.currentScript.insertAdjacentHTML("beforebegin", htmlstr);
+            }
+            else {
+                parent.insertAdjacentHTML("beforeend", htmlstr);
+            }
+        }
+        else {
+            parent.insertAdjacentHTML("beforeend", htmlstr);
+        }
         return parent;
     },
     getval(ele) {
-        if (ele instanceof HTMLInputElement) {
+        if (ele instanceof HTMLInputElement)
             return ele.value;
-        }
         throw new Error("此元素不是input");
     },
     setval(ele, text) {
@@ -48,28 +44,25 @@ const $$$Func = {
         }
         throw new Error(`元素 ${ele} 不是input`);
     },
-    css(style, ele) {
+    css(ele, style) {
         let result;
-        if (!style) {
-            result = getComputedStyle(ele);
-        }
-        else {
-            let styleKeys = Object.keys(style);
-            for (let styleKey of styleKeys) {
-                ele.style.setProperty(styleKey, style[styleKey]);
+        Object.keys(style ?? {}).forEach((k) => {
+            if (style && style[k]) {
+                ele.style.setProperty(k, style[k]);
             }
-            result = "this";
-        }
+        });
+        result = "this";
+        result = getComputedStyle(ele);
         return result;
-    }
+    },
 };
+// jquery-like class
 class $$$class {
     ele;
     constructor(id) {
         this.ele = $$$Func.getid(id);
-        if (!this.ele) {
+        if (!this.ele)
             throw new Error(`The class(ele) ${id} not found`);
-        }
     }
     append(htmlstr) {
         $$$Func.append(this.ele, htmlstr);
@@ -90,24 +83,27 @@ class $$$class {
         return this;
     }
     val(text) {
-        if (text === undefined) {
+        if (text === undefined)
             return $$$Func.getval(this.ele);
-        }
         if (this.ele instanceof HTMLInputElement) {
             $$$Func.setval(this.ele, text);
             return this;
         }
-        else {
-            throw new Error(`此元素 ${this.ele} 不是input`);
-        }
+        throw new Error(`此元素 ${this.ele} 不是input`);
     }
     css(style) {
-        let result = $$$Func.css(style, this.ele);
-        return result == "this" ? this : result;
+        let result;
+        if (style) {
+            result = $$$Func.css(this.ele, style);
+        }
+        else {
+            result = $$$Func.css(this.ele);
+        }
+        return result === "this" ? this : result;
     }
-    ;
 }
-;
+// 全域函式
 function $$$(id) {
     return new $$$class(id);
 }
+//# sourceMappingURL=index.js.map
