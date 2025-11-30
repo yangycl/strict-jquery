@@ -7,7 +7,8 @@ interface $$$Type {
     append:(parent:HTMLElement,htmlstr:string) => HTMLElement
     getval:(ele:HTMLElement) => string,
     setval:(ele:HTMLInputElement,text:string) => void|never,
-    css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this"
+    css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this",
+    attr:(ele:HTMLElement, key:string, value?:string) => "this" |string
 }
 interface ictJQuery {
     ele:HTMLElement,
@@ -18,6 +19,7 @@ interface ictJQuery {
     on:(event:string,fun:(ev: Event) => void) => this,
     val:(text?:string) => string|this
     css:(style?:Record<string,string>) => CSSStyleDeclaration | this
+    attr:(key:string, value?:string) => this | string
 }
 declare function $$$(id:string) : ictJQuery;
 

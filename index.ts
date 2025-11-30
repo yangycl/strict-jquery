@@ -1,3 +1,4 @@
+/// <reference path="types@/index.d.ts" />
 // 全域函式
 const $$$Func: $$$Type = {
     getid: (id) => {
@@ -55,6 +56,16 @@ const $$$Func: $$$Type = {
 
         return result;
     },
+    attr(ele, key, value){
+        let result:string;
+        if(typeof value == "string"){
+            ele.setAttribute(key, value);
+            result = "this";
+        }else{
+            result = ele.getAttribute(key) ?? "";
+        }    
+        return result; 
+    }
 };
 
 // jquery-like class
@@ -105,6 +116,10 @@ class $$$class implements ictJQuery {
             result = $$$Func.css(this.ele)
         }
         return result === "this" ? this : result;
+    }
+    attr (key:string, value?:string) {
+        let result = $$$Func.attr(this.ele, key, value);
+        return result == "this" ? this : result;
     }
 }
 
