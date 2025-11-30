@@ -65,6 +65,12 @@ const $$$Func: $$$Type = {
             result = ele.getAttribute(key) ?? "";
         }    
         return result; 
+    },
+    show(ele){
+        ele.style.display = "";
+    },
+    hide(ele){
+        ele.style.display = "none";
     }
 };
 
@@ -120,6 +126,14 @@ class $$$class implements ictJQuery {
     attr (key:string, value?:string) {
         let result = $$$Func.attr(this.ele, key, value);
         return result == "this" ? this : result;
+    }
+    hide (){
+        $$$Func.hide(this.ele);
+        return this;        
+    }
+    show (){
+        $$$Func.show(this.ele);
+        return this;
     }
 }
 

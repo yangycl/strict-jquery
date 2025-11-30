@@ -9,6 +9,8 @@ interface $$$Type {
     setval:(ele:HTMLInputElement,text:string) => void|never,
     css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this",
     attr:(ele:HTMLElement, key:string, value?:string) => "this" |string
+    hide:(ele:HTMLElement) => void,
+    show:(ele:HTMLElement) => void
 }
 interface ictJQuery {
     ele:HTMLElement,
@@ -20,6 +22,8 @@ interface ictJQuery {
     val:(text?:string) => string|this
     css:(style?:Record<string,string>) => CSSStyleDeclaration | this
     attr:(key:string, value?:string) => this | string
+    hide:() => this,
+    show:() => this
 }
 declare function $$$(id:string) : ictJQuery;
 
