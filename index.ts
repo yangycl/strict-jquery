@@ -46,11 +46,11 @@ const $$$Func: $$$Type = {
         Object.keys(style ?? {}).forEach((k) => {
             if(style && style[k]){
                 ele!.style.setProperty(k, style[k]);
+                result = "this";
             }
         });
     
-        result = "this";
-    
+            
 
         result = getComputedStyle(ele);
 

@@ -50,9 +50,9 @@ const $$$Func = {
         Object.keys(style !== null && style !== void 0 ? style : {}).forEach((k) => {
             if (style && style[k]) {
                 ele.style.setProperty(k, style[k]);
+                result = "this";
             }
         });
-        result = "this";
         result = getComputedStyle(ele);
         return result;
     },
