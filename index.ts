@@ -1,4 +1,4 @@
-/// <reference path="types@/index.d.ts" />
+/// <reference path="types/index.d.ts" />
 // 全域函式
 const $$$Func: $$$Type = {
     getid: (id) => {
@@ -71,6 +71,9 @@ const $$$Func: $$$Type = {
     },
     hide(ele){
         ele.style.display = "none";
+    },
+    state(ele){
+        return ele.style.display;
     }
 };
 
@@ -134,6 +137,9 @@ class $$$class implements ictJQuery {
     show (){
         $$$Func.show(this.ele);
         return this;
+    }
+    state(){
+        return $$$Func.state(this.ele);
     }
 }
 

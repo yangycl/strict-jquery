@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path="types@/index.d.ts" />
+/// <reference path="types/index.d.ts" />
 // 全域函式
 const $$$Func = {
     getid: (id) => {
@@ -19,9 +19,8 @@ const $$$Func = {
         return result;
     },
     append(parent, htmlstr) {
-        var _a;
         if (parent === document.body) {
-            if (((_a = document.currentScript) === null || _a === void 0 ? void 0 : _a.parentElement) === document.body && document.currentScript) {
+            if (document.currentScript?.parentElement === document.body && document.currentScript) {
                 document.currentScript.insertAdjacentHTML("beforebegin", htmlstr);
             }
             else {
@@ -47,7 +46,7 @@ const $$$Func = {
     },
     css(ele, style) {
         let result;
-        Object.keys(style !== null && style !== void 0 ? style : {}).forEach((k) => {
+        Object.keys(style ?? {}).forEach((k) => {
             if (style && style[k]) {
                 ele.style.setProperty(k, style[k]);
                 result = "this";
@@ -57,20 +56,29 @@ const $$$Func = {
         return result;
     },
     attr(ele, key, value) {
-        var _a;
         let result;
         if (typeof value == "string") {
             ele.setAttribute(key, value);
             result = "this";
         }
         else {
-            result = (_a = ele.getAttribute(key)) !== null && _a !== void 0 ? _a : "";
+            result = ele.getAttribute(key) ?? "";
         }
         return result;
+    },
+    show(ele) {
+        ele.style.display = "";
+    },
+    hide(ele) {
+        ele.style.display = "none";
+    },
+    state(ele) {
+        return ele.style.display;
     }
 };
 // jquery-like class
 class $$$class {
+    ele;
     constructor(id) {
         this.ele = $$$Func.getid(id);
         if (!this.ele)
@@ -116,6 +124,17 @@ class $$$class {
     attr(key, value) {
         let result = $$$Func.attr(this.ele, key, value);
         return result == "this" ? this : result;
+    }
+    hide() {
+        $$$Func.hide(this.ele);
+        return this;
+    }
+    show() {
+        $$$Func.show(this.ele);
+        return this;
+    }
+    state() {
+        return $$$Func.state(this.ele);
     }
 }
 // 全域函式

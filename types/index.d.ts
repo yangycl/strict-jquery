@@ -10,7 +10,8 @@ interface $$$Type {
     css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this",
     attr:(ele:HTMLElement, key:string, value?:string) => "this" |string
     hide:(ele:HTMLElement) => void,
-    show:(ele:HTMLElement) => void
+    show:(ele:HTMLElement) => void,
+    state:(ele:HTMLElement) => string
 }
 interface ictJQuery {
     ele:HTMLElement,
@@ -23,7 +24,8 @@ interface ictJQuery {
     css:(style?:Record<string,string>) => CSSStyleDeclaration | this
     attr:(key:string, value?:string) => this | string
     hide:() => this,
-    show:() => this
+    show:() => this,
+    state:() => string
 }
 declare function $$$(id:string) : ictJQuery;
 
