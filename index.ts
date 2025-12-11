@@ -1,4 +1,8 @@
 /// <reference path="types/index.d.ts" />
+function isInput(ele: HTMLElement): ele is HTMLInputElement | HTMLTextAreaElement {
+    return ele instanceof HTMLInputElement || ele instanceof HTMLTextAreaElement;
+}
+
 // 全域函式
 const $$$Func: $$$Type = {
     getid: (id) => {
@@ -30,11 +34,11 @@ const $$$Func: $$$Type = {
         return parent;
     },
     getval(ele) {
-        if (ele instanceof HTMLInputElement) return ele.value;
+        if (isInput(ele)) return ele.value;
         throw new Error("此元素不是input");
     },
     setval(ele, text) {
-        if (ele instanceof HTMLInputElement) {
+        if (isInput(ele)) {
             ele.value = text;
             return;
         }
@@ -110,7 +114,7 @@ class $$$class implements ictJQuery {
 
     val(text?: string): string | this {
         if (text === undefined) return $$$Func.getval(this.ele);
-        if (this.ele instanceof HTMLInputElement) {
+        if (isInput(this.ele)) {
             $$$Func.setval(this.ele, text);
             return this;
         }

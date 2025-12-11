@@ -1,5 +1,8 @@
 "use strict";
 /// <reference path="types/index.d.ts" />
+function isInput(ele) {
+    return ele instanceof HTMLInputElement || ele instanceof HTMLTextAreaElement;
+}
 // 全域函式
 const $$$Func = {
     getid: (id) => {
@@ -33,12 +36,12 @@ const $$$Func = {
         return parent;
     },
     getval(ele) {
-        if (ele instanceof HTMLInputElement)
+        if (isInput(ele))
             return ele.value;
         throw new Error("此元素不是input");
     },
     setval(ele, text) {
-        if (ele instanceof HTMLInputElement) {
+        if (isInput(ele)) {
             ele.value = text;
             return;
         }
@@ -105,7 +108,7 @@ class $$$class {
     val(text) {
         if (text === undefined)
             return $$$Func.getval(this.ele);
-        if (this.ele instanceof HTMLInputElement) {
+        if (isInput(this.ele)) {
             $$$Func.setval(this.ele, text);
             return this;
         }
@@ -141,3 +144,4 @@ class $$$class {
 function $$$(id) {
     return new $$$class(id);
 }
+//# sourceMappingURL=index.js.map

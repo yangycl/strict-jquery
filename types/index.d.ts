@@ -6,7 +6,7 @@ interface $$$Type {
     getclass:(classname:string) => IdMap,
     append:(parent:HTMLElement,htmlstr:string) => HTMLElement
     getval:(ele:HTMLElement) => string,
-    setval:(ele:HTMLInputElement,text:string) => void|never,
+    setval:(ele:HTMLElement,text:string) => void|never,
     css:(ele:HTMLElement,style?:Record<string,string>) => CSSStyleDeclaration|"this",
     attr:(ele:HTMLElement, key:string, value?:string) => "this" |string
     hide:(ele:HTMLElement) => void,
